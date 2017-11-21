@@ -1,3 +1,16 @@
+enum UserKind {
+  Student
+  Teacher
+  Admin
+}
+
+enum ResponseKind {
+  Up
+  Down
+  Question
+}
+
+
 type File @model {
   contentType: String!
   createdAt: DateTime!
@@ -13,4 +26,35 @@ type User @model {
   createdAt: DateTime!
   id: ID! @isUnique
   updatedAt: DateTime!
+  kind: UserKind @defaultValue(value: Student)
+  name: String!
+  isActive: Boolean @defaultValue(value: true)
+
+  responses: [Response!]! @relation(name: "UserResponse")
+  courses: [Course!]! @relation(name: "StudentsCourses")
+  teaches: [Course!]! @relation(name: "TeachersCourses")
+}
+
+type Course @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  name: String! @isUnique
+  isActive: Boolean @defaultValue(value: true)
+
+  teachers: [User!]! @relation(name: "TeachersCourses")
+  students: [User!]! @relation(name: "StudentsCourses")
+  responses: [Response!]! @relation(name: "ResponseCourse")
+}
+
+type Response @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  kind: ResponseKind!
+  comment: String
+  isPublic: Boolean @defaultValue(value: true)
+
+  author: User! @relation(name: "UserResponse")
+  course: Course! @relation(name: "ResponseCourse")
 }
