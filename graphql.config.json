@@ -1,0 +1,16 @@
+{
+  "schema": {
+    "request": {
+      "url": "https://api.graph.cool/simple/v1/cj9zlxupi89qi016599mbuv5r",
+      "method": "POST",
+      "README_postIntrospectionQuery": "Whether to POST an introspectionQuery to the url. If the url always returns the schema JSON, set to false and consider using GET",
+      "postIntrospectionQuery": true
+    }
+  },
+  "endpoints": [
+    {
+      "name": "Default (https://api.graph.cool/simple/v1/cj9zlxupi89qi016599mbuv5r)",
+      "url": "https://api.graph.cool/simple/v1/cj9zlxupi89qi016599mbuv5r"
+    }
+  ]
+}
